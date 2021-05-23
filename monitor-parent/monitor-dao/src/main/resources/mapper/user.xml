@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.camille.monitor.dao.UserDao">
+
+    <sql id="base_column">
+        id, username, password, salt
+    </sql>
+
+    <insert id="insertUser" parameterType="org.camille.monitor.dao.pojo.User">
+        insert into `user` (username, password, salt)
+        values (#{username}, #{password}, #{salt})
+    </insert>
+
+
+    <select id="selectByUsername" resultType="org.camille.monitor.dao.pojo.User">
+        select <include refid="base_column"></include>
+        from user
+        where username = #{username}
+    </select>
+</mapper>
